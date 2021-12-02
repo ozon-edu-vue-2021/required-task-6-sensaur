@@ -1,17 +1,26 @@
 <template>
   <div>
-    <VuetifyDatatable :posts="posts" />
+<!--    <VuetifyDatatable :posts="posts" />-->
+<!--    <VirtalScrollWrapper />-->
+<!--    <Pagination />-->
+    <Sorting />
   </div>
 </template>
 
 <script>
-import VuetifyDatatable from "./components/VuetifyDatatable";
+// import VuetifyDatatable from "./components/VuetifyDatatable";
+// import VirtalScrollWrapper from '@/components/virtual-scroll';
+// import Pagination from '@/components/with-paging';
+import Sorting from '@/components/with-sort';
 
 export default {
   name: "App",
 
   components: {
-    VuetifyDatatable,
+    // VuetifyDatatable,
+    // VirtalScrollWrapper,
+    // Pagination,
+    Sorting
   },
 
   data: () => ({
