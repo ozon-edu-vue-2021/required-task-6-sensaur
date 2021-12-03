@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
-import vuetify from './plugins/vuetify'
+// import vuetify from './plugins/vuetify'
 import VueVirtualScroller from 'vue-virtual-scroller'
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
@@ -32,7 +32,6 @@ Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.config.productionTip = false;
 
 new Vue({
-  //add vuetify to vue
-  vuetify,
+  // vuetify,
   render: h => h(App),
 }).$mount('#app')
