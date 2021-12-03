@@ -17,7 +17,7 @@
   </div>
   <div v-else>
     <template v-if="rendered">
-      <Item v-for="item in rows" :key="item.id" :item="item" />
+      <Item v-for="item in rows" :key="item.images[0]" :item="item" />
     </template>
 
     <button @click="rendered = true">Render</button>

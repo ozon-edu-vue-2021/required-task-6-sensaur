@@ -53,7 +53,7 @@ export default {
         {...shownPagesNumbers.map(
           number => (
             <span
-              class={[$style.control, { [$style.active]: currentPage === number }]}
+              class={[$style.control, { [$style.active]: currentPage == number }]}
               on={{ click: () => getPage(number) }}
             >
               {number}

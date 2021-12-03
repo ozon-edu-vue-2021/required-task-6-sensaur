@@ -3,7 +3,7 @@
       :rows="rows"
       :total-pages="100"
       :current-page="currentPage"
-      :static-paging="true"
+      :static-paging="false"
 
       @getPage="infGetPage"
   >
@@ -49,7 +49,7 @@ export default {
       const res2 = await res.json()
       this.rows = res2.pets;
       this.currentPage = number;
-      console.log(number)
+      // console.log(number)
     },
     async infGetPage() {
       this.blockingPromise && await this.blockingPromise;
@@ -58,6 +58,7 @@ export default {
       const newRows = res2.pets;
       this.rows = [...this.rows, ...newRows];
       this.currentPage++;
+      // console.log(this.currentPage)
     }
   }
 };

@@ -1,5 +1,5 @@
 <script lang="jsx">
-import OzTablePaginator from './oz-table-paginator';
+import OzTablePaginator from './oz-table-paginator'
 import DotsLoaderIcon from './dost-loader.svg';
 
 export default {
@@ -91,10 +91,7 @@ export default {
           <tbody>{...rows}</tbody>
         </table>
 
-        {staticPaging
-          ? <OzTablePaginator totalPages={totalPages} currentPage={currentPage} on={{ getPage: getPage }} />
-          : this.renderInfPager()
-        }
+        {staticPaging ? <OzTablePaginator totalPages={totalPages} currentPage={currentPage} on={{ getPage: getPage }} /> : this.renderInfPager()}
 
       </div>
     );

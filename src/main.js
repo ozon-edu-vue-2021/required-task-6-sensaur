@@ -27,7 +27,7 @@ Vue.use(IconsPlugin)
 Vue.use(VueVirtualScroller)
 Vue.use(VTooltipPlugin);
 
-Vue.directive('detect-viewport', Directive);
+Vue.directive(`detect-viewport`, Directive);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.config.productionTip = false;
 

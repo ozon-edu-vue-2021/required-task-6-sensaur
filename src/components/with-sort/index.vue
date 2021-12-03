@@ -31,7 +31,7 @@ export default {
     const res3 = await fetch(`http://pets-v2.dev-apis.com/pets`)
     const res3j = await res3.json()
     this.rows = res3j.pets;
-    console.log(this.rows)
+    // console.log(this.rows)
   },
   data() {
     return {
