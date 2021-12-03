@@ -31,8 +31,13 @@ export default {
   name: 'VirtalScrollWrapper',
   components: { Item },
   async created() {
-    const res = await fetch(`https://jsonplaceholder.typicode.com/comments`);
-    this.rows = await res.json();
+    // const res = await fetch(`https://jsonplaceholder.typicode.com/comments`);
+    // this.rows = await res.json();
+    // console.log(this.rows)
+    const res3 = await fetch(`http://pets-v2.dev-apis.com/pets`)
+    const res3j = await res3.json()
+    this.rows = res3j.pets;
+    // console.log(this.rows)
   },
   data() {
     return {

@@ -1,19 +1,19 @@
 <template>
   <oz-table :rows="rows">
     <oz-table-column prop="id" title="ID" />
-    <oz-table-column prop="postId" title="Post ID" />
+    <oz-table-column prop="animal" title="animal" />
 
-    <oz-table-column prop="email">
+    <oz-table-column prop="image">
       <template #title>
-        <b>Email</b>
+        <b>URL</b>
       </template>
 
       <template #body="{ row }">
-        <a :href="`mailto:${row.email}`">{{ row.email }}</a>
+        <a :href="`${row.images[0]}`">{{ row.images[0] }}</a>
       </template>
     </oz-table-column>
 
-    <oz-table-column prop="name" title="Name" />
+    <oz-table-column prop="description" title="Description" />
   </oz-table>
 </template>
 
@@ -28,8 +28,10 @@ export default {
     OzTable
   },
   async created() {
-    const res = await fetch(`https://jsonplaceholder.typicode.com/comments`);
-    this.rows = await res.json();
+    const res3 = await fetch(`http://pets-v2.dev-apis.com/pets`)
+    const res3j = await res3.json()
+    this.rows = res3j.pets;
+    console.log(this.rows)
   },
   data() {
     return {

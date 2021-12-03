@@ -1,26 +1,26 @@
 <template>
   <oz-table
-    :rows="rows"
-    :total-pages="100"
-    :current-page="currentPage"
-    :static-paging="false"
+      :rows="rows"
+      :total-pages="100"
+      :current-page="currentPage"
+      :static-paging="true"
 
-    @getPage="infGetPage"
+      @getPage="infGetPage"
   >
     <oz-table-column prop="id" title="ID" />
-    <oz-table-column prop="postId" title="Post ID" />
+    <oz-table-column prop="animal" title="animal" />
 
-    <oz-table-column prop="email">
+    <oz-table-column prop="image">
       <template #title>
-        <b>Email</b>
+        <b>URL</b>
       </template>
 
       <template #body="{ row }">
-        <a :href="`mailto:${row.email}`">{{ row.email }}</a>
+        <a :href="`${row.images[0]}`">{{ row.images[0] }}</a>
       </template>
     </oz-table-column>
 
-    <oz-table-column prop="name" title="Name" />
+    <oz-table-column prop="description" title="Description" />
   </oz-table>
 </template>
 
@@ -45,14 +45,17 @@ export default {
   },
   methods: {
     async getPage(number) {
-      const res = await fetch(`https://jsonplaceholder.typicode.com/comments?postId=${number}`);
-      this.rows = await res.json();
+      const res = await fetch(`http://pets-v2.dev-apis.com/pets?id=${number}`);
+      const res2 = await res.json()
+      this.rows = res2.pets;
       this.currentPage = number;
+      console.log(number)
     },
     async infGetPage() {
       this.blockingPromise && await this.blockingPromise;
-      const res = await fetch(`https://jsonplaceholder.typicode.com/comments?postId=${this.currentPage + 1}`);
-      const newRows = await res.json();
+      const res = await fetch(`http://pets-v2.dev-apis.com/pets?id=${this.currentPage + 1}`);
+      const res2 = await res.json()
+      const newRows = res2.pets;
       this.rows = [...this.rows, ...newRows];
       this.currentPage++;
     }
