@@ -12,6 +12,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import VTooltipPlugin from 'v-tooltip'
+import VueRouter from 'vue-router'
 
 Vue.config.productionTip = false
 
@@ -21,17 +22,34 @@ library.add(faSortAmountUp, faSortAmountDown, faSort, faFilter, faTimes);
 
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import {Directive} from "./directives/detect-viewport";
+// import VirtalScrollWrapper from "./components/virtual-scroll";
+// import Pagination from "./components/with-paging"
+import Sorting from "./components/with-sort"
+import Home from "./components/Home";
 
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 Vue.use(VueVirtualScroller)
 Vue.use(VTooltipPlugin);
+Vue.use(VueRouter)
 
 Vue.directive(`detect-viewport`, Directive);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.config.productionTip = false;
 
+const routes = [
+  // { path: '/VirtalScrollWrapper', component: VirtalScrollWrapper },
+  // { path: '/Pagination', component: Pagination },
+  { path: '/Sorting', component: Sorting },
+  { path: '/', component: Home }
+]
+
+const router = new VueRouter({
+  routes, // short for `routes: routes`
+  mode: "history"
+})
+
 new Vue({
-  // vuetify,
+  router,
   render: h => h(App),
 }).$mount('#app')
