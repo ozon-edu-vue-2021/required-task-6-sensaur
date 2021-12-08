@@ -1,0 +1,46 @@
+<template>
+  <div class="wrapper">
+    <Header />
+  </div>
+</template>
+
+<script>
+import Header from "./Header";
+
+export default {
+  name: "Home",
+  components: {
+    Header,
+  },
+};
+</script>
+
+<style scoped>
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.content {
+  background: #efe9e2;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.fw-600 {
+  font-weight: 600;
+}
+
+.d-blue {
+  color: dodgerblue;
+}
+
+.black {
+  color: black;
+}
+
+.pointer {
+  cursor: pointer;
+}
+</style>
