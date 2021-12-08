@@ -3,13 +3,13 @@
     <oz-table-column prop="id" title="ID" />
     <oz-table-column prop="animal" title="animal" />
 
-    <oz-table-column prop="image">
+    <oz-table-column prop="images">
       <template #title>
         <b>URL</b>
       </template>
 
       <template #body="{ row }">
-        <a :href="`${row.images[0]}`">{{ row.images[0] }}</a>
+        <a :href="`${row.images[0]}`">{{ row.images[0]}}</a>
       </template>
     </oz-table-column>
 

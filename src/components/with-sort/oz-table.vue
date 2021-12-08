@@ -1,5 +1,5 @@
 <script lang="jsx">
-import { orderBy } from 'lodash/collection';
+import {orderBy} from 'lodash/collection';
 import FilterDropdown from './filter-dropdown';
 
 export default {
@@ -23,13 +23,13 @@ export default {
       let res;
 
       if (!this.sortProp) {
-        res =  this.rows;
+        res = this.rows;
       }
 
       res = orderBy(this.rows, [this.sortProp], [this.sortDirection]);
 
-      if(this.filterText) {
-        res = res.filter(row => row[this.filterProp].search(this.filterText) > -1)
+      if (this.filterText) {
+        res = res.filter(row => row[this.filterProp].toString().search(this.filterText) > -1)
       }
 
       return res;
@@ -48,7 +48,7 @@ export default {
       this.filterText = e.target.value;
     },
     renderHead(h, columnsOptions) {
-      const { $style, sortProp, sortDirection, filterProp, filterText } = this;
+      const {$style, sortProp, sortDirection, filterProp, filterText} = this;
 
       return columnsOptions.map((column) => {
         const renderedTitle = column.scopedSlots.title ? column.scopedSlots.title() : column.title;
@@ -59,27 +59,27 @@ export default {
         }
 
         return (
-          <th key={column.prop} class={$style.headerCell}>
-            <div class={$style.headerCellContent}>
-              <span>{renderedTitle}</span>
-              <font-awesome-icon
-                class={$style.sortIcon}
-                icon={sortIcon}
-                on={{ click: () => this.toggleSort(column.prop) }}
-              />
-              <FilterDropdown
-                columnProp={column.prop}
-                shown={column.prop === filterProp}
-                filterText={filterText}
+            <th key={column.prop} class={$style.headerCell}>
+              <div class={$style.headerCellContent}>
+                <span>{renderedTitle}</span>
+                <font-awesome-icon
+                    class={$style.sortIcon}
+                    icon={sortIcon}
+                    on={{click: () => this.toggleSort(column.prop)}}
+                />
+                <FilterDropdown
+                    columnProp={column.prop}
+                    shown={column.prop === filterProp}
+                    filterText={filterText}
 
-                on={{
-                  openFilterTooltip: () => this.openFilterTooltip(column.prop),
-                  closeFilterTooltip: () => this.openFilterTooltip(),
-                  setFilterText: this.setFilterText,
-                }}
-              />
-            </div>
-          </th>
+                    on={{
+                      openFilterTooltip: () => this.openFilterTooltip(column.prop),
+                      closeFilterTooltip: () => this.openFilterTooltip(),
+                      setFilterText: this.setFilterText,
+                    }}
+                />
+              </div>
+            </th>
         );
       });
     },
@@ -91,21 +91,19 @@ export default {
     renderColumns(h, row, columnsOptions) {
       return columnsOptions.map((column) => {
         return (
-          <td key={column.prop} class={this.$style.cell}>
-            {column.scopedSlots.body ? column.scopedSlots.body({ row }) : row[column.prop]}
-          </td>
+            <td key={column.prop} class={this.$style.cell}>
+              {column.scopedSlots.body ? column.scopedSlots.body({row}) : row[column.prop]}
+            </td>
         );
       });
     },
     getColumnOptions() {
-      return this.$slots.default.
-        filter(item => item.componentOptions && item.componentOptions.tag === 'oz-table-column').
-        map(column =>
+      return this.$slots.default.filter(item => item.componentOptions && item.componentOptions.tag === 'oz-table-column').map(column =>
           Object.assign({}, column.componentOptions.propsData, {
-              scopedSlots: column.data.scopedSlots || {}
-            }
+                scopedSlots: column.data.scopedSlots || {}
+              }
           )
-        );
+      );
     }
   },
   render(h) {
@@ -114,44 +112,44 @@ export default {
     const rows = this.renderRows(h, columnsOptions);
 
     return (
-      <table class={this.$style.table}>
-        <thead>{...columnsHead}</thead>
-        <tbody>{...rows}</tbody>
-      </table>
+        <table class={this.$style.table}>
+          <thead>{...columnsHead}</thead>
+          <tbody>{...rows}</tbody>
+        </table>
     );
   }
 };
 </script>
 
 <style module>
-  .table {
-    border-spacing: 0;
-    margin: 8px;
-    width: 100%;
-  }
+.table {
+  border-spacing: 0;
+  margin: 8px;
+  width: 100%;
+}
 
-  .cell {
-    text-align: left;
-    border-bottom: 1px solid #c8cacc;
-    padding: 1rem 1rem;
-  }
+.cell {
+  text-align: left;
+  border-bottom: 1px solid #c8cacc;
+  padding: 1rem 1rem;
+}
 
-  .headerCell {
-    composes: cell;
-    background: #c7cbcb;
-  }
+.headerCell {
+  composes: cell;
+  background: #c7cbcb;
+}
 
-  .headerCellContent {
-    display: flex;
-    align-items: center;
-  }
+.headerCellContent {
+  display: flex;
+  align-items: center;
+}
 
-  .sortIcon {
-    margin-left: 8px;
-    margin-right: 24px;
-  }
+.sortIcon {
+  margin-left: 8px;
+  margin-right: 24px;
+}
 
-  .sortIcon:hover {
-    cursor: pointer;
-  }
+.sortIcon:hover {
+  cursor: pointer;
+}
 </style>

@@ -47,7 +47,7 @@ export default {
     async getPage(number) {
       const res = await fetch(`http://pets-v2.dev-apis.com/pets?id=${number}`);
       const res2 = await res.json()
-      this.rows = res2.pets;
+      this.rows = await res2.pets;
       this.currentPage = number;
       // console.log(number)
     },
@@ -55,8 +55,10 @@ export default {
       this.blockingPromise && await this.blockingPromise;
       const res = await fetch(`http://pets-v2.dev-apis.com/pets?id=${this.currentPage + 1}`);
       const res2 = await res.json()
-      const newRows = res2.pets;
+      const newRows = await res2.pets;
+      // console.log(newRows)
       this.rows = [...this.rows, ...newRows];
+      // console.log(this.rows)
       this.currentPage++;
     }
   }

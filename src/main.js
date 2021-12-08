@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
-
+import {library} from '@fortawesome/fontawesome-svg-core';
 import {
     faSortAmountUp,
     faSortAmountDown,
@@ -9,19 +9,21 @@ import {
     faTimes
 } from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome';
-import {Directive} from '@/directives/detect-viewport';
+import VTooltipPlugin from 'v-tooltip'
+import { Directive } from './directives/detect-viewport';
 
 import VueRouter from 'vue-router'
-import {library} from '@fortawesome/fontawesome-svg-core';
 import Sorting from "./components/with-sort"
 import Home from "./components/Home";
 import WithPaging from "./components/with-paging";
 import Scroll from "./components/scroll";
-import VTooltipPlugin from 'v-tooltip'
+import VueVirtualScroller from 'vue-virtual-scroller'
 
 Vue.use(VueRouter);
 Vue.use(VTooltipPlugin);
+Vue.use(VueVirtualScroller)
 
+import 'v-tooltip/dist/v-tooltip.css'
 library.add(faSortAmountUp, faSortAmountDown, faSort, faFilter, faTimes);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.directive('detect-viewport', Directive);

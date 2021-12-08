@@ -1,7 +1,7 @@
 <template>
   <oz-table
       :rows="rows"
-      :total-pages="100"
+      :total-pages="10"
       :current-page="currentPage"
       :static-paging="false"
 
@@ -10,7 +10,7 @@
     <oz-table-column prop="id" title="ID" />
     <oz-table-column prop="animal" title="animal" />
 
-    <oz-table-column prop="image">
+    <oz-table-column prop="images">
       <template #title>
         <b>URL</b>
       </template>
@@ -49,13 +49,12 @@ export default {
       const res2 = await res.json()
       this.rows = res2.pets;
       this.currentPage = number;
-      // console.log(number)
     },
     async infGetPage() {
       this.blockingPromise && await this.blockingPromise;
       const res = await fetch(`http://pets-v2.dev-apis.com/pets?id=${this.currentPage + 1}`);
       const res2 = await res.json()
-      const newRows = res2.pets;
+      const newRows = await res2.pets
       this.rows = [...this.rows, ...newRows];
       this.currentPage++;
     }
