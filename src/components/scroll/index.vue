@@ -1,4 +1,5 @@
 <template>
+  <div class="container">
   <oz-table
       :rows="rows"
       :total-pages="10"
@@ -22,6 +23,7 @@
 
     <oz-table-column prop="description" title="Description" />
   </oz-table>
+  </div>
 </template>
 
 <script>
@@ -61,3 +63,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.container {
+  /*width: 300px;*/
+}
+</style>

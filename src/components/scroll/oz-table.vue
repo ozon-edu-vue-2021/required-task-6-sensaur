@@ -1,5 +1,4 @@
 <script lang="jsx">
-import OzTablePaginator from './oz-table-paginator'
 import DotsLoaderIcon from './dost-loader.svg';
 
 export default {
@@ -9,18 +8,6 @@ export default {
       type: Array,
       default: () => []
     },
-    totalPages: {
-      type: Number,
-      default: 0
-    },
-    currentPage: {
-      type: Number,
-      default: 0
-    },
-    staticPaging: {
-      type: Boolean,
-      default: true
-    }
   },
   methods: {
     renderHead(h, columnsOptions) {
@@ -78,8 +65,7 @@ export default {
     }
   },
   render(h) {
-    const { $style, totalPages, currentPage, staticPaging, $listeners } = this;
-    const { getPage } = $listeners;
+    const { $style } = this;
     const columnsOptions = this.getColumnOptions();
     const columnsHead = this.renderHead(h, columnsOptions);
     const rows = this.renderRows(h, columnsOptions);
@@ -91,7 +77,7 @@ export default {
           <tbody>{...rows}</tbody>
         </table>
 
-        {staticPaging ? <OzTablePaginator totalPages={totalPages} currentPage={currentPage} on={{ getPage: getPage }} /> : this.renderInfPager()}
+        {this.renderInfPager()}
 
       </div>
     );
@@ -111,11 +97,13 @@ export default {
     text-align: left;
     border-bottom: 1px solid #c8cacc;
     padding: 1rem 1rem;
+    height: 400px;
   }
 
   .headerCell {
     composes: cell;
     background: #c7cbcb;
+    height: 100px;
   }
 
   .infPager {
